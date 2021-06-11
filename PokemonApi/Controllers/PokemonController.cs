@@ -17,11 +17,13 @@ namespace PokemonApi.Controllers
 			_db = db;
 		}
 
+		/*
 		// GET api/pokemon
 		[HttpGet]
-		public ActionResult<IEnumerable<Pokemon>> Get(int index, string name, string type1, string type2)
+		public ActionResult<IEnumerable<Pokemon>> Get(int index, string name)
 		{
 			return null;
 		}
+		*/
 	}
 }
