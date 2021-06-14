@@ -43,5 +43,12 @@ namespace PokemonApi.Controllers
 			_db.Pokemon.Add(pokemon);
 			_db.SaveChanges();
 		}
+
+		// GET api/pokemon/5
+		[HttpGet("{id}")]
+		public ActionResult<Pokemon> GetActionResult(int id)
+		{
+			return _db.Pokemon.FirstOrDefault(entry => entry.PokemonId == id);
+		}
 	}
 }
