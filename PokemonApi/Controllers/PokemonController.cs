@@ -36,7 +36,7 @@ namespace PokemonApi.Controllers
 			return query.ToList();
 		}
 
-		// Post api/pokemon
+		// Post api/pokemon/5
 		[HttpPost]
 		public void Post([FromBody] Pokemon pokemon)
 		{
@@ -49,6 +49,15 @@ namespace PokemonApi.Controllers
 		public ActionResult<Pokemon> GetActionResult(int id)
 		{
 			return _db.Pokemon.FirstOrDefault(entry => entry.PokemonId == id);
+		}
+
+		// PUT api/pokemon/5
+		[HttpPut("{id}")]
+		public void Put(int id, [FromBody] Pokemon pokemon)
+		{
+			pokemon.PokemonId = id;
+			_db.Entry(pokemon).State = EntityState.Modified;
+			_db.SaveChanges();
 		}
 	}
 }
