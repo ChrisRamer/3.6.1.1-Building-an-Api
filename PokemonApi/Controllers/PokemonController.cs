@@ -59,5 +59,14 @@ namespace PokemonApi.Controllers
 			_db.Entry(pokemon).State = EntityState.Modified;
 			_db.SaveChanges();
 		}
+
+		// DELETE api/pokemon/5
+		[HttpDelete("{id}")]
+		public void Delete(int id)
+		{
+			Pokemon pokemonToDelete = _db.Pokemon.FirstOrDefault(entry => entry.PokemonId == id);
+			_db.Pokemon.Remove(pokemonToDelete);
+			_db.SaveChanges();
+		}
 	}
 }
