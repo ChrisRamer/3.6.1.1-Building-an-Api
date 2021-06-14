@@ -35,5 +35,13 @@ namespace PokemonApi.Controllers
 
 			return query.ToList();
 		}
+
+		// Post api/pokemon
+		[HttpPost]
+		public void Post([FromBody] Pokemon pokemon)
+		{
+			_db.Pokemon.Add(pokemon);
+			_db.SaveChanges();
+		}
 	}
 }
