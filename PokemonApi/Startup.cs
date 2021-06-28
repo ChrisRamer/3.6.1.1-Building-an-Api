@@ -2,7 +2,6 @@ using PokemonApi.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,12 +23,6 @@ namespace PokemonApi
 			services.AddDbContext<PokemonApiContext>(opt =>
 			  opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-			services.AddApiVersioning(o => {
-				o.ReportApiVersions = true;
-				o.AssumeDefaultVersionWhenUnspecified = true;
-				o.DefaultApiVersion = new ApiVersion(1, 0);
-			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
