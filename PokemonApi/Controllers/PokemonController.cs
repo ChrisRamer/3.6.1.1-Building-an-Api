@@ -6,13 +6,14 @@ using System.Linq;
 
 namespace PokemonApi.Controllers
 {
-	[Route("api/[controller]")]
+	[ApiVersion("1.0")]
+	[Route("api/{version:apiVersion}/pokemon")]
 	[ApiController]
-	public class PokemonController : ControllerBase
+	public class PokemonV1Controller : ControllerBase
 	{
 		private PokemonApiContext _db;
 
-		public PokemonController(PokemonApiContext db)
+		public PokemonV1Controller(PokemonApiContext db)
 		{
 			_db = db;
 		}
@@ -67,6 +68,26 @@ namespace PokemonApi.Controllers
 			Pokemon pokemonToDelete = _db.Pokemon.FirstOrDefault(entry => entry.PokemonId == id);
 			_db.Pokemon.Remove(pokemonToDelete);
 			_db.SaveChanges();
+		}
+	}
+
+	[ApiVersion("2.0")]
+	[Route("api/{version:apiVersion}/pokemon")]
+	[ApiController]
+	public class PokemonV2Controller : ControllerBase
+	{
+		private PokemonApiContext _db;
+
+		public PokemonV2Controller(PokemonApiContext db)
+		{
+			_db = db;
+		}
+
+		// GET api/pokemon/5
+		[HttpGet("{id}")]
+		public ActionResult<Pokemon> GetActionResult(int id)
+		{
+			return _db.Pokemon.FirstOrDefault(entry => entry.PokemonId == id);
 		}
 	}
 }
