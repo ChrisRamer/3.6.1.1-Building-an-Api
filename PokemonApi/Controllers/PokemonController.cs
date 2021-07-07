@@ -7,7 +7,7 @@ using System.Linq;
 namespace PokemonApi.Controllers
 {
 	[ApiVersion("1.0")]
-	[Route("api/{version:apiVersion}/pokemon")]
+	[Route("api/v{version:apiVersion}/pokemon")]
 	[ApiController]
 	public class PokemonV1Controller : ControllerBase
 	{
@@ -72,7 +72,7 @@ namespace PokemonApi.Controllers
 	}
 
 	[ApiVersion("2.0")]
-	[Route("api/{version:apiVersion}/pokemon")]
+	[Route("api/v{version:apiVersion}/pokemon")]
 	[ApiController]
 	public class PokemonV2Controller : ControllerBase
 	{
